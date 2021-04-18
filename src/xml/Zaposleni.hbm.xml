@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class dynamic-insert="false" 
+         dynamic-update="false" 
+         mutable="true" name="model.Zaposleni" 
+         table = "zaposleni"
+         optimistic-lock="version" polymorphism="implicit" 
+         select-before-update="false">
+      <id name = "idZaposleni" type = "int" column = "idZaposleni">
+         <generator class="native"/>
+      </id>
+      <property name = "ime" column = "ime" type = "string"/>
+      <property name = "prezime" column = "prezime" type = "string"/>
+      <property name = "godine" column = "godine" type = "int"/>
+      <property name = "broj_tel" column = "broj_telefona" unique="true" type = "string"/>
+      <property name = "pol" column = "pol" type = "string"/>
+      <property name = "grad" column = "grad" type = "string"/>
+      <property name = "email" column = "email" unique="true" type = "string"/>
+      <property name = "username" column = "username" unique="true" type = "string"/>
+      <property name = "password" column = "password" type = "string"/>
+      <property name = "pozicija" column = "pozicija" type = "string"/>
+      <property name = "plata" column = "plata" type = "double"/>  
+  </class>
+</hibernate-mapping>

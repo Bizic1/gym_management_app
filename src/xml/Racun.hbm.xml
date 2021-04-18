@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class dynamic-insert="false" 
+         dynamic-update="false" 
+         mutable="true" name="model.Racun" 
+         table = "racuni"
+         optimistic-lock="version" polymorphism="implicit" 
+         select-before-update="false">
+      <id name = "idRacun" type = "int" column = "idRacun">
+         <generator class="native"/>
+      </id>
+      <property name = "ime" column = "ime" type = "string"/>
+      <property name = "prezime" column = "prezime" type = "string"/>
+      <property name = "program" column = "program" type = "string"/>
+      <property name = "datum" column = "datum" type = "string"/>
+      <property name = "iznos" column = "iznos" type = "double"/>  
+      <property name = "email" column = "email" type = "string"/>  
+  </class>
+</hibernate-mapping>

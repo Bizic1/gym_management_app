@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class dynamic-insert="false" 
+         dynamic-update="false" 
+         mutable="true" name="model.FitnesCentar" 
+         table = "fitnescentri"
+         optimistic-lock="version" polymorphism="implicit" 
+         select-before-update="false">
+      <id name = "idFitnesCentar" type = "int" column = "idFitnesCentar">
+         <generator class="native"/>
+      </id>
+      <property name = "naziv" column = "naziv" type = "string"/>
+      <property name = "adresa" column = "adresa" type = "string"/>
+      <property name = "broj_tel" column = "broj_telefona" unique="true" type = "string"/>
+      <property name = "email" column = "email" unique="true" type = "string"/>
+      <property name = "radnovreme" column = "radno_vreme" type = "string"/>
+      <property name = "brZaposlenih" column = "broj_zaposlenih" type = "int"/>  
+  </class>
+</hibernate-mapping>

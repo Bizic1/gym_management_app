@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class dynamic-insert="false" 
+         dynamic-update="false" 
+         mutable="true" name="model.Clan" 
+         table = "clanovi"
+         optimistic-lock="version" polymorphism="implicit" 
+         select-before-update="false">
+      <id name = "idClan" type = "int" column = "idClan">
+         <generator class="native"/>
+      </id>
+      <property name = "ime" column = "ime" type = "string"/>
+      <property name = "prezime" column = "prezime" type = "string"/>
+      <property name = "godine" column = "godine" type = "int"/>
+      <property name = "broj_tel" column = "broj_telefona" unique="true" type = "string"/>
+      <property name = "pol" column = "pol" type = "string"/>
+      <property name = "grad" column = "grad" type = "string"/>
+      <property name = "email" column = "email" unique="true" type = "string"/>
+      <property name = "username" column = "username" unique="true" type = "string"/>
+      <property name = "password" column = "password" type = "string"/>
+      <property name = "trajanje_clan" column = "trajanje_clanarine"  type = "string"/>
+      <property name = "program" column = "program" type = "string"/>
+      <property name = "clanarina" column = "clanarina" type = "double"/>  
+  </class>
+</hibernate-mapping>
