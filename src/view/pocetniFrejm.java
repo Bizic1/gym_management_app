@@ -1,13 +1,9 @@
-/*
-Frejm koji se prikazuje cim se pokrene program
- */
-package frejmovi;
+//Frejm koji se otvara cim se pokrene aplikacija.
+ 
+package view;
 
-import defaultpaket.FrameController;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import javax.swing.JButton;
 
 public class pocetniFrejm extends javax.swing.JFrame {
 
@@ -62,19 +58,6 @@ public class pocetniFrejm extends javax.swing.JFrame {
         registracija_btn.setText("REGISTRACIJA");
         registracija_btn.setToolTipText("");
         registracija_btn.setFocusable(false);
-        registracija_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (FrameController.RegistracioniFrejmOtvoren == 0) {
-                    new registracijaFrejm().setVisible(true);
-                    FrameController.RegistracioniFrejmOtvoren = 1;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Vec je otvoren prozor za Registraciju!");
-                }
-                
-            }
-
-        });
 
         onama_btn.setBackground(new java.awt.Color(60, 63, 66));
         onama_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -82,18 +65,6 @@ public class pocetniFrejm extends javax.swing.JFrame {
         onama_btn.setText("O NAMA");
         onama_btn.setToolTipText("");
         onama_btn.setFocusable(false);
-        onama_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (FrameController.oNamaFrejmOtvoren == 0) {
-                    new oNamaFrejm().setVisible(true);
-                    FrameController.oNamaFrejmOtvoren = 1;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Vec je otvoren prozor 'O nama'!");
-                }
-            }
-
-        });
 
         prijava_btn.setBackground(new java.awt.Color(60, 63, 66));
         prijava_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -101,18 +72,6 @@ public class pocetniFrejm extends javax.swing.JFrame {
         prijava_btn.setText("PRIJAVA");
         prijava_btn.setToolTipText("");
         prijava_btn.setFocusable(false);
-        prijava_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (FrameController.prijavaFrejmOtvoren == 0) {
-                    new prijavaFrejm().setVisible(true);
-                    FrameController.prijavaFrejmOtvoren = 1;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Vec je otvoren prozor za prijavu!");
-                }
-            }
-
-        });
 
         jLabel1.setBackground(new java.awt.Color(60, 63, 66));
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
@@ -171,14 +130,26 @@ public class pocetniFrejm extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
 
         setLocationRelativeTo(null);
     }
+
+    public JButton getOnama_btn() {
+        return onama_btn;
+    }
+
+    public JButton getPrijava_btn() {
+        return prijava_btn;
+    }
+
+    public JButton getRegistracija_btn() {
+        return registracija_btn;
+    }
+    
+    
 
 }

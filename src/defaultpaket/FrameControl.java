@@ -1,7 +1,7 @@
 
 package defaultpaket;
 
-public class FrameController {
+public class FrameControl {
     
     public static int RegistracioniFrejmOtvoren = 0;
     public static int zaposleniFrejmOtvoren = 0;

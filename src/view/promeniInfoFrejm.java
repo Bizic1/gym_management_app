@@ -1,14 +1,8 @@
-/*
-frejm koji se otvara pritiskom na dugme promeni informacije, u frejmu Zaposleni
- */
-package frejmovi;
+//Frejm koji se otvara pritiskom na dugme "PROMENI INFORMACIJE", u frejmu zaposleni.
+package view;
 
-
-import baza.koriscenjeZaposleni;
-import defaultpaket.FrameController;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 public class promeniInfoFrejm extends javax.swing.JFrame {
@@ -112,8 +106,6 @@ public class promeniInfoFrejm extends javax.swing.JFrame {
         potvrdi_btn.setText("POTVRDI");
         potvrdi_btn.setToolTipText("");
         potvrdi_btn.setFocusable(false);
-        potvrdi_btn.addMouseListener(new koriscenjeZaposleni(this,5));
-        
 
         otkazi_btn.setBackground(new java.awt.Color(60, 63, 66));
         otkazi_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -121,24 +113,6 @@ public class promeniInfoFrejm extends javax.swing.JFrame {
         otkazi_btn.setText("OTKAZI");
         otkazi_btn.setToolTipText("");
         otkazi_btn.setFocusable(false);
-        otkazi_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            dispose();
-            FrameController.promeniInformacijeFrejmOtvoren = 0;
-            }
-        
-        });
-        
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.promeniInformacijeFrejmOtvoren = 0;
-            }
-
-        });
-
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -224,11 +198,9 @@ public class promeniInfoFrejm extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
-
+        
         pack();
         
         setLocationRelativeTo(null);
@@ -253,9 +225,14 @@ public class promeniInfoFrejm extends javax.swing.JFrame {
     public JTextField getZaposleni_tf() {
         return zaposleni_tf;
     }
-    
-    
-    
+
+    public JButton getOtkazi_btn() {
+        return otkazi_btn;
+    }
+
+    public JButton getPotvrdi_btn() {
+        return potvrdi_btn;
+    }
 
                                        
 }

@@ -1,8 +1,6 @@
-package baza;
+package defaultpaket;
 
-import defaultpaket.FrameController;
-import defaultpaket.HibernateUtil;
-import frejmovi.registracijaFrejm;
+import view.registracijaFrejm;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.regex.Matcher;
@@ -14,23 +12,27 @@ import org.hibernate.Session;
 
 public class registracijaKorisnika extends MouseAdapter {
 
-    registracijaFrejm frejm;
+    registracijaFrejm view;
+    Clan model;
+    Clan modelUser;
+    Clan modelBroj;
+    Clan modelEmail;
 
-    public registracijaKorisnika(registracijaFrejm frejm) {
-        this.frejm = frejm;
+    public registracijaKorisnika(registracijaFrejm view) {
+        this.view = view;
     }
 
     public void registrujKorisnika() {
-        String ime = frejm.getIme_tf().getText();
-        String prezime = frejm.getPrezime_tf().getText();
-        String godine = frejm.getGodine_tf().getText();
-        String tel = frejm.getTelefon_tf().getText();
-        String pol = frejm.getPol_tf().getText();
-        String username = frejm.getUsername_tf().getText();
-        String password = frejm.getPassword_tf().getText();
-        String password2 = frejm.getPassword2_tf().getText();
-        String grad = frejm.getGrad_tf().getText();
-        String email = frejm.getEmail_tf().getText();
+        String ime = view.getIme_tf().getText();
+        String prezime = view.getPrezime_tf().getText();
+        String godine = view.getGodine_tf().getText();
+        String tel = view.getTelefon_tf().getText();
+        String pol = view.getPol_tf().getText();
+        String username = view.getUsername_tf().getText();
+        String password = view.getPassword_tf().getText();
+        String password2 = view.getPassword2_tf().getText();
+        String grad = view.getGrad_tf().getText();
+        String email = view.getEmail_tf().getText();
 
         Pattern p = Pattern.compile("^[A-Z]{1}[a-z]{2,14}$");
         Pattern p2 = Pattern.compile("^[0-9]{1,2}$");
@@ -42,7 +44,7 @@ public class registracijaKorisnika extends MouseAdapter {
 
         m = p.matcher(ime);
         if (!m.find()) {
-            JOptionPane.showMessageDialog(frejm, "Ime nije pravilno popunjeno!\n"
+            JOptionPane.showMessageDialog(view, "Ime nije pravilno popunjeno!\n"
                     + "Ime mora sadrzati samo slova, od 3 do 20 karaktera!\n"
                     + "Pocetno slovo mora biti veliko, ostala ne smeju biti!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
@@ -51,11 +53,11 @@ public class registracijaKorisnika extends MouseAdapter {
         m2 = p.matcher(prezime);
         if (m2.find()) {
             if (prezime.equals(ime)) {
-                JOptionPane.showMessageDialog(frejm, "Ime i prezime ne smeju biti isti!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Ime i prezime ne smeju biti isti!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } else {
-            JOptionPane.showMessageDialog(frejm, "Prezime nije pravilno popunjeno!\n"
+            JOptionPane.showMessageDialog(view, "Prezime nije pravilno popunjeno!\n"
                     + "Prezime mora sadrzati samo slova, od 3 do 20 karaktera!\n"
                     + "Pocetno slovo mora biti veliko, ostala ne smeju biti!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
@@ -64,26 +66,26 @@ public class registracijaKorisnika extends MouseAdapter {
         m3 = p2.matcher(godine);
         if (m3.find()) {
             if (Integer.parseInt(godine) < 8 || Integer.parseInt(godine) > 75) {
-                JOptionPane.showMessageDialog(frejm, "Godine moraju biti izmedju 8 i 75!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Godine moraju biti izmedju 8 i 75!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
         } else {
-            JOptionPane.showMessageDialog(frejm, "Godine nisu pravilno popunjene!\n"
+            JOptionPane.showMessageDialog(view, "Godine nisu pravilno popunjene!\n"
                     + "Godine mogu da sadrze najvise 2 broja ", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         m4 = p3.matcher(tel);
         if (!m4.find()) {
-            JOptionPane.showMessageDialog(frejm, "Broj telefona nije pravilno popunjen!\n"
+            JOptionPane.showMessageDialog(view, "Broj telefona nije pravilno popunjen!\n"
                     + "Broj telefona mora biti u formatu ***/***/***!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (pol.equals("Musko") || pol.equals("Zensko")) {
         } else {
-            JOptionPane.showMessageDialog(frejm, "Pol nije pravilno popunjen!\n"
+            JOptionPane.showMessageDialog(view, "Pol nije pravilno popunjen!\n"
                     + "Pol mora biti popunjen sa: 'Musko' ili 'Zensko' !\n"
                     + "Pocetno slovo mora biti veliko!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
@@ -91,7 +93,7 @@ public class registracijaKorisnika extends MouseAdapter {
 
         m5 = p5.matcher(username);
         if (!m5.find()) {
-            JOptionPane.showMessageDialog(frejm, "Korisnicko ime nije pravilno popunjeno!\n"
+            JOptionPane.showMessageDialog(view, "Korisnicko ime nije pravilno popunjeno!\n"
                     + "Korisnicko ime moze da sadrzi slova i brojeve, od 6 do 10 karaktera!\n"
                     + "Pocetno slovo mora biti veliko, ostala ne smeju biti!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
@@ -100,25 +102,25 @@ public class registracijaKorisnika extends MouseAdapter {
         m6 = p6.matcher(password);
         if (m6.find()) {
             if (password.equalsIgnoreCase(username)) {
-                JOptionPane.showMessageDialog(frejm, "Korisnicko ime i sifra ne smeju biti isti!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Korisnicko ime i sifra ne smeju biti isti!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } else {
-            JOptionPane.showMessageDialog(frejm, "Sifra nije pravilno popunjena!\n"
+            JOptionPane.showMessageDialog(view, "Sifra nije pravilno popunjena!\n"
                     + "Sifra moze da sadrzi samo mala slova i brojeve, od 6 do 10 karaktera!",
                     "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (!password2.equals(password)) {
-            JOptionPane.showMessageDialog(frejm, "Ponovljena sifra mora da bude jednaka sa sifrom!",
+            JOptionPane.showMessageDialog(view, "Ponovljena sifra mora da bude jednaka sa sifrom!",
                     "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         m7 = p.matcher(grad);
         if (!m7.find()) {
-            JOptionPane.showMessageDialog(frejm, "Grad nije pravilno popunjen!\n"
+            JOptionPane.showMessageDialog(view, "Grad nije pravilno popunjen!\n"
                     + "Grad mora sadrzati samo slova, od 3 do 20 karaktera!\n"
                     + "Pocetno slovo mora biti veliko, ostala ne smeju biti!", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
@@ -126,54 +128,50 @@ public class registracijaKorisnika extends MouseAdapter {
 
         m8 = p4.matcher(email);
         if (!m8.find()) {
-            JOptionPane.showMessageDialog(frejm, "Email nije pravilno popunjen!\n"
+            JOptionPane.showMessageDialog(view, "Email nije pravilno popunjen!\n"
                     + "Email mora biti u formatu: slovabrojevi(2-15)@slova(3-7).slova(2,3)", "Fitnes Centar Ahilej", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         String[] opcije = {"Da", "Ne"};
 
-        int x = JOptionPane.showOptionDialog(frejm, "Da li sigurno zelite da se registrujete?",
+        int x = JOptionPane.showOptionDialog(view, "Da li sigurno zelite da se registrujete?",
                 "Registracija",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcije, opcije[0]);
 
         if (x == 0) {
 
-            Clan c = new Clan(Integer.parseInt(godine), 0, ime, prezime, tel, pol, grad, email, username, password, "Nema", "Nema");
+            model = new Clan(Integer.parseInt(godine), 0, ime, prezime, tel, pol, grad, email, username, password, "Nema", "Nema");
             Session sesija = HibernateUtil.getSessionFactory().openSession();
 
             Query q = sesija.createQuery("from Clan where username = :username");
-            q.setParameter("username", c.getUsername());
-             //preuzeto sa : https://stackoverflow.com/questions/6469246/how-to-check-if-a-data-exist-on-a-table-using-hibernate
-            Clan cUsername = (Clan) q.uniqueResult();
-            //
+            q.setParameter("username", model.getUsername());
 
-            if (cUsername != null) {
-                JOptionPane.showMessageDialog(frejm, "Vec postoji takav username!", "Registracija", JOptionPane.ERROR_MESSAGE);
+            modelUser = (Clan) q.uniqueResult();
+
+            if (modelUser != null) {
+                JOptionPane.showMessageDialog(view, "Vec postoji takav username!", "Registracija", JOptionPane.ERROR_MESSAGE);
                 sesija.close();
                 return;
             }
 
             Query q2 = sesija.createQuery("from Clan where broj_tel = :broj_tel");
-            q2.setParameter("broj_tel", c.getBroj_tel());
-             //preuzeto sa : https://stackoverflow.com/questions/6469246/how-to-check-if-a-data-exist-on-a-table-using-hibernate
-            Clan cBroj = (Clan) q2.uniqueResult();
-            //
+            q2.setParameter("broj_tel", model.getBroj_tel());
 
-            if (cBroj != null) {
-                JOptionPane.showMessageDialog(frejm, "Vec postoji takav broj telefona!", "Registracija", JOptionPane.ERROR_MESSAGE);
+            modelBroj = (Clan) q2.uniqueResult();
+
+            if (modelBroj != null) {
+                JOptionPane.showMessageDialog(view, "Vec postoji takav broj telefona!", "Registracija", JOptionPane.ERROR_MESSAGE);
                 sesija.close();
                 return;
             }
 
             Query q3 = sesija.createQuery("from Clan where email = :email");
-            q3.setParameter("email", c.getEmail());
-             //preuzeto sa : https://stackoverflow.com/questions/6469246/how-to-check-if-a-data-exist-on-a-table-using-hibernate
-            Clan cEmail = (Clan) q3.uniqueResult();
-            //
+            q3.setParameter("email", model.getEmail());
+            modelEmail = (Clan) q3.uniqueResult();
 
-            if (cEmail != null) {
-                JOptionPane.showMessageDialog(frejm, "Vec postoji takav email!", "Registracija", JOptionPane.ERROR_MESSAGE);
+            if (modelEmail != null) {
+                JOptionPane.showMessageDialog(view, "Vec postoji takav email!", "Registracija", JOptionPane.ERROR_MESSAGE);
                 sesija.close();
                 return;
             }
@@ -184,15 +182,15 @@ public class registracijaKorisnika extends MouseAdapter {
 
             Session novaSesija = HibernateUtil.getSessionFactory().openSession();
             novaSesija.beginTransaction();
-            novaSesija.save(c);
+            novaSesija.save(model);
             novaSesija.getTransaction().commit();
 
             if (novaSesija.isOpen()) {
                 novaSesija.close();
             }
-            JOptionPane.showMessageDialog(frejm, "Uspesno ste se registrovali!", "Registracija", JOptionPane.INFORMATION_MESSAGE);
-            FrameController.RegistracioniFrejmOtvoren = 0;
-            frejm.dispose();
+            JOptionPane.showMessageDialog(view, "Uspesno ste se registrovali!", "Registracija", JOptionPane.INFORMATION_MESSAGE);
+            FrameControl.RegistracioniFrejmOtvoren = 0;
+            view.dispose();
 
         }
     }

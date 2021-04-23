@@ -1,13 +1,11 @@
 package defaultpaket;
 
-import frejmovi.pocetniFrejm;
-
+import controller.Controller;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        new pocetniFrejm().setVisible(true);
+        Controller c = new Controller();
     }
 
 }

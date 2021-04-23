@@ -1,16 +1,11 @@
-/*
-frejm koji se otvori pritiskom na dugme obrisi clana, u frejmu Zaposleni
- */
-package frejmovi;
+//Frejm koji se otvara pritiskom na dugme "PRIKAZI CLANA", u frejmu Zaposleni.
+package view;
 
-import baza.koriscenjeZaposleni;
-import defaultpaket.FrameController;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class obrisiFrejm extends javax.swing.JFrame {
+public class prikaziClanaFrejm extends javax.swing.JFrame {
 
     private javax.swing.JTextField id_tf;
     private javax.swing.JTextField ime_tf;
@@ -21,21 +16,20 @@ public class obrisiFrejm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton obrisi_btn;
+    private javax.swing.JButton prikazi_btn;
     private javax.swing.JButton otkazi_btn;
     private javax.swing.JTextField prezime_tf;
     
-    public obrisiFrejm() {
+    public prikaziClanaFrejm() {
         napraviKomponente();
     }
-
-                           
+                      
     private void napraviKomponente() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         otkazi_btn = new javax.swing.JButton();
-        obrisi_btn = new javax.swing.JButton();
+        prikazi_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -73,23 +67,13 @@ public class obrisiFrejm extends javax.swing.JFrame {
         otkazi_btn.setText("OTKAZI");
         otkazi_btn.setToolTipText("");
         otkazi_btn.setFocusable(false);
-        otkazi_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            dispose();
-            FrameController.obrisiClanaFrejmOtvoren = 0;
-            }
-            
-        });
 
-        obrisi_btn.setBackground(new java.awt.Color(60, 63, 66));
-        obrisi_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        obrisi_btn.setForeground(new java.awt.Color(204, 204, 204));
-        obrisi_btn.setText("OBRISI");
-        obrisi_btn.setToolTipText("");
-        obrisi_btn.setFocusable(false);
-        obrisi_btn.addMouseListener(new koriscenjeZaposleni(this, 10));
-
+        prikazi_btn.setBackground(new java.awt.Color(60, 63, 66));
+        prikazi_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        prikazi_btn.setForeground(new java.awt.Color(204, 204, 204));
+        prikazi_btn.setText("PRIKAZI");
+        prikazi_btn.setToolTipText("");
+        prikazi_btn.setFocusable(false);
 
         jLabel1.setBackground(new java.awt.Color(60, 63, 66));
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
@@ -113,14 +97,6 @@ public class obrisiFrejm extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(104, 104, 104));
         jLabel5.setText("ID:");
        
-       //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.obrisiClanaFrejmOtvoren = 0;
-            }
-
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -146,7 +122,7 @@ public class obrisiFrejm extends javax.swing.JFrame {
                             .addGap(18, 18, 18)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(obrisi_btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))
+                        .addComponent(prikazi_btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,7 +156,7 @@ public class obrisiFrejm extends javax.swing.JFrame {
                     .addComponent(id_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(obrisi_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prikazi_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(otkazi_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
         );
@@ -196,10 +172,8 @@ public class obrisiFrejm extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
         
@@ -218,10 +192,15 @@ public class obrisiFrejm extends javax.swing.JFrame {
         return id_tf;
     }
 
+    public JButton getPrikazi_btn() {
+        return prikazi_btn;
+    }
+
+    public JButton getOtkazi_btn() {
+        return otkazi_btn;
+    }
     
     
-  
-                 
-                
+              
 }
 

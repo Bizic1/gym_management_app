@@ -1,16 +1,9 @@
-/*
-frejm koji se prikazuje pritiskom na dugme o nama, u pocetnom frejmu
+//Frejm koji se prikazuje pritiskom na dugme "O NAMA", u pocetnom frejmu.
+package view;
 
- */
-package frejmovi;
-
-import defaultpaket.FrameController;
-import defaultpaket.HibernateUtil;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
-import model.FitnesCentar;
-import org.hibernate.Session;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class oNamaFrejm extends javax.swing.JFrame {
 
@@ -35,22 +28,7 @@ public class oNamaFrejm extends javax.swing.JFrame {
     public oNamaFrejm() {
         napraviKomponente();
     }
-
-    public static FitnesCentar izvuciFitnesCentar() {
-        Session sesija = HibernateUtil.getSessionFactory().openSession();
-        sesija.beginTransaction();
-
-        FitnesCentar fc = (FitnesCentar) (sesija.load(FitnesCentar.class, 1));
-
-        sesija.getTransaction().commit();
-
-        if (sesija.isOpen()) {
-            sesija.close();
-        }
-
-        return fc;
-    }
-
+    
     private void napraviKomponente() {
         
         jPanel1 = new javax.swing.JPanel();
@@ -124,25 +102,18 @@ public class oNamaFrejm extends javax.swing.JFrame {
 
         naziv_l.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         naziv_l.setForeground(new java.awt.Color(102, 102, 102));
-       
-        FitnesCentar fc = izvuciFitnesCentar();
-        naziv_l.setText(fc.getNaziv());
 
         adresa_l.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         adresa_l.setForeground(new java.awt.Color(102, 102, 102));
-        adresa_l.setText(fc.getAdresa());
 
         telefon_l.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         telefon_l.setForeground(new java.awt.Color(102, 102, 102));
-        telefon_l.setText(fc.getBroj_tel());
 
         email_l.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         email_l.setForeground(new java.awt.Color(102, 102, 102));
-        email_l.setText(fc.getEmail());
 
         radnov_l.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         radnov_l.setForeground(new java.awt.Color(102, 102, 102));
-        radnov_l.setText(fc.getRadnovreme());
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
@@ -150,7 +121,6 @@ public class oNamaFrejm extends javax.swing.JFrame {
 
         zaposleni_l.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         zaposleni_l.setForeground(new java.awt.Color(102, 102, 102));
-        zaposleni_l.setText(String.valueOf(fc.getBrZaposlenih()));
 
         zatvori_btn.setBackground(new java.awt.Color(60, 63, 66));
         zatvori_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -158,24 +128,7 @@ public class oNamaFrejm extends javax.swing.JFrame {
         zatvori_btn.setText("ZATVORI");
         zatvori_btn.setToolTipText("");
         zatvori_btn.setFocusable(false);
-        zatvori_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                FrameController.oNamaFrejmOtvoren = 0;
-                dispose();
-            }
-
-        });
-
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.oNamaFrejmOtvoren = 0;
-            }
-
-        });
-        
+       
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -265,15 +218,41 @@ public class oNamaFrejm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
 
         setLocationRelativeTo(null);
     }
 
+    public JLabel getAdresa_l() {
+        return adresa_l;
+    }
+
+    public JLabel getNaziv_l() {
+        return naziv_l;
+    }
+
+    public JLabel getRadnov_l() {
+        return radnov_l;
+    }
+
+    public JLabel getTelefon_l() {
+        return telefon_l;
+    }
+
+    public JLabel getZaposleni_l() {
+        return zaposleni_l;
+    }
+
+    public JLabel getEmail_l() {
+        return email_l;
+    }
+
+    public JButton getZatvori_btn() {
+        return zatvori_btn;
+    }
+
+    
 }

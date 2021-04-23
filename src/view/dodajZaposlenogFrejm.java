@@ -1,14 +1,8 @@
-/*
-Frejm koji se otvara pritiskom na dugme dodaj zaposlenog, u frejmu Zaposleni
- */
-package frejmovi;
+//Frejm koji se otvara pritiskom na dugme "DODAJ ZAPOSLENOG", u frejmu zaposleni.
+package view;
 
-
-import baza.koriscenjeZaposleni;
-import defaultpaket.FrameController;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 public class dodajZaposlenogFrejm extends javax.swing.JFrame {
@@ -156,15 +150,6 @@ public class dodajZaposlenogFrejm extends javax.swing.JFrame {
         otkazi_btn.setText("OTKAZI");
         otkazi_btn.setToolTipText("");
         otkazi_btn.setFocusable(false);
-        otkazi_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            FrameController.dodajZaposlenogFrejmOtvoren = 0;
-            dispose();
-            }
-        
-        });
-        
 
         dodaj_btn.setBackground(new java.awt.Color(60, 63, 66));
         dodaj_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -172,9 +157,7 @@ public class dodajZaposlenogFrejm extends javax.swing.JFrame {
         dodaj_btn.setText("DODAJ");
         dodaj_btn.setToolTipText("");
         dodaj_btn.setFocusable(false);
-        dodaj_btn.addMouseListener(new koriscenjeZaposleni(this, 9));
         
-
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("Sifra:");
@@ -187,14 +170,6 @@ public class dodajZaposlenogFrejm extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("Plata:");
         
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.dodajZaposlenogFrejmOtvoren = 0;
-            }
-
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -326,10 +301,8 @@ public class dodajZaposlenogFrejm extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
         
@@ -385,9 +358,14 @@ public class dodajZaposlenogFrejm extends javax.swing.JFrame {
         return username_tf;
     }
 
-               
-    
-    
-                  
+    public JButton getDodaj_btn() {
+        return dodaj_btn;
+    }
+
+    public JButton getOtkazi_btn() {
+        return otkazi_btn;
+    }
+
+                 
 }
 

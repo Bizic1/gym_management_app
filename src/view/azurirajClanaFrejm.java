@@ -1,11 +1,8 @@
-/*
-Frejm koji se otvara pritiskom na dugme azuriraj clana, u frejmu zaposleni
- */
-package frejmovi;
+//Frejm koji se otvara pritiskom na dugme "AZURIRAJ CLANA", u frejmu zaposleni.
+package view;
 
-import baza.koriscenjeZaposleni;
-import defaultpaket.FrameController;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 public class azurirajClanaFrejm extends javax.swing.JFrame {
@@ -39,8 +36,7 @@ public class azurirajClanaFrejm extends javax.swing.JFrame {
     public azurirajClanaFrejm() {
         napraviKomponente();
     }
-
-                       
+                
     private void napraviKomponente() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -135,7 +131,6 @@ public class azurirajClanaFrejm extends javax.swing.JFrame {
         azuriraj_btn.setText("AZURIRAJ CLANA");
         azuriraj_btn.setToolTipText("");
         azuriraj_btn.setFocusable(false);
-        azuriraj_btn.addMouseListener(new koriscenjeZaposleni(this, 7));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
@@ -150,17 +145,6 @@ public class azurirajClanaFrejm extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Clanarina:");
-        
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.azurirajClanaFrejmOtvoren = 0;
-            }
-
-        });
-        
-        
         
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -267,10 +251,8 @@ public class azurirajClanaFrejm extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
         
@@ -316,6 +298,12 @@ public class azurirajClanaFrejm extends javax.swing.JFrame {
     public JTextField getPol_tf() {
         return pol_tf;
     }
+
+    public JButton getAzuriraj_btn() {
+        return azuriraj_btn;
+    }
+    
+    
       
     
 }

@@ -1,11 +1,9 @@
-/*
-frejm se otvara kada se uloguje zaposleni korisnik
- */
-package frejmovi;
+//Frejm se otvara kada se uloguje zaposleni korisnik.
+ 
+package view;
 
-import baza.koriscenjeZaposleni;
-import defaultpaket.FrameController;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 
 public class zaposleniFrejm extends javax.swing.JFrame {
@@ -19,14 +17,8 @@ public class zaposleniFrejm extends javax.swing.JFrame {
     private javax.swing.JButton prikazi_btn;
     private javax.swing.JButton promeni_btn; 
     private javax.swing.JButton azuriraj_btn;
-    prijavaFrejm pfrejm;
     
     public zaposleniFrejm() {
-        napraviKomponente();
-    }
-
-    public zaposleniFrejm(prijavaFrejm pfrejm) {
-        this.pfrejm = pfrejm;
         napraviKomponente();
     }
                      
@@ -71,8 +63,6 @@ public class zaposleniFrejm extends javax.swing.JFrame {
         obrisi_btn.setText("OBRISI CLANA");
         obrisi_btn.setToolTipText("");
         obrisi_btn.setFocusable(false);
-        obrisi_btn.addMouseListener(new koriscenjeZaposleni(this,1));
-        
 
         dodaj_btn.setBackground(new java.awt.Color(60, 63, 66));
         dodaj_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -80,9 +70,6 @@ public class zaposleniFrejm extends javax.swing.JFrame {
         dodaj_btn.setText("DODAJ ZAPOSLENOG");
         dodaj_btn.setToolTipText("");
         dodaj_btn.setFocusable(false);
-        dodaj_btn.addMouseListener(new koriscenjeZaposleni(this,pfrejm, 8));
-
-
         jLabel1.setBackground(new java.awt.Color(60, 63, 66));
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
@@ -98,7 +85,6 @@ public class zaposleniFrejm extends javax.swing.JFrame {
         promeni_btn.setText("PROMENI INFORMACIJE");
         promeni_btn.setToolTipText("");
         promeni_btn.setFocusable(false);
-        promeni_btn.addMouseListener(new koriscenjeZaposleni(this, 4));
 
 
         prikazi_btn.setBackground(new java.awt.Color(60, 63, 66));
@@ -107,7 +93,7 @@ public class zaposleniFrejm extends javax.swing.JFrame {
         prikazi_btn.setText("PRIKAZI CLANA");
         prikazi_btn.setToolTipText("");
         prikazi_btn.setFocusable(false);
-        prikazi_btn.addMouseListener(new koriscenjeZaposleni(2));
+
 
 
         azuriraj_btn.setBackground(new java.awt.Color(60, 63, 66));
@@ -116,16 +102,6 @@ public class zaposleniFrejm extends javax.swing.JFrame {
         azuriraj_btn.setText("AZURIRAJ CLANA");
         azuriraj_btn.setToolTipText("");
         azuriraj_btn.setFocusable(false);
-        azuriraj_btn.addMouseListener(new koriscenjeZaposleni(this, 6));
-
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event        
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.zaposleniFrejmOtvoren = 0;
-            }
-
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,15 +154,35 @@ public class zaposleniFrejm extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
         
         setLocationRelativeTo(null);
     }                        
+
+    public JButton getDodaj_btn() {
+        return dodaj_btn;
+    }
+
+    public JButton getObrisi_btn() {
+        return obrisi_btn;
+    }
+
+    public JButton getPrikazi_btn() {
+        return prikazi_btn;
+    }
+
+    public JButton getPromeni_btn() {
+        return promeni_btn;
+    }
+
+    public JButton getAzuriraj_btn() {
+        return azuriraj_btn;
+    }
                  
+    
+    
 }
 

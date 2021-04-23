@@ -1,49 +1,43 @@
-/*
-frejm koji se otvara pritiskom na dugme PRIJAVA, u pocetnom frejmu
- */
+//Frejm koji se otvara pritiskom na dugme "OBRISI CLANA", u frejmu zaposleni.
+package view;
 
-package frejmovi;
-
-import baza.prijavaKorisnika;
-import defaultpaket.FrameController;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JPasswordField;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
+public class obrisiFrejm extends javax.swing.JFrame {
 
-public class prijavaFrejm extends javax.swing.JFrame {
-
-
+    private javax.swing.JTextField id_tf;
+    private javax.swing.JTextField ime_tf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton obrisi_btn;
     private javax.swing.JButton otkazi_btn;
-    private javax.swing.JPasswordField password_tf;
-    private javax.swing.JButton prijava_btn;
-    private javax.swing.JTextField user_tf;
+    private javax.swing.JTextField prezime_tf;
     
-    public prijavaFrejm() {
+    public obrisiFrejm() {
         napraviKomponente();
     }
-
-                      
+                        
     private void napraviKomponente() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         otkazi_btn = new javax.swing.JButton();
-        prijava_btn = new javax.swing.JButton();
+        obrisi_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        password_tf = new javax.swing.JPasswordField();
-        user_tf = new javax.swing.JTextField();
+        prezime_tf = new javax.swing.JTextField();
+        ime_tf = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        id_tf = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(153, 0, 153))); // NOI18N
@@ -60,7 +54,6 @@ public class prijavaFrejm extends javax.swing.JFrame {
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
-
         setTitle("Fitnes Centar Ahilej");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
@@ -74,23 +67,13 @@ public class prijavaFrejm extends javax.swing.JFrame {
         otkazi_btn.setText("OTKAZI");
         otkazi_btn.setToolTipText("");
         otkazi_btn.setFocusable(false);
-        otkazi_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                FrameController.prijavaFrejmOtvoren = 0;
-                dispose();
-            }
-        
-        });
-        
 
-        prijava_btn.setBackground(new java.awt.Color(60, 63, 66));
-        prijava_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        prijava_btn.setForeground(new java.awt.Color(204, 204, 204));
-        prijava_btn.setText("PRIJAVA");
-        prijava_btn.setToolTipText("");
-        prijava_btn.setFocusable(false);
-        prijava_btn.addMouseListener(new prijavaKorisnika(this));
+        obrisi_btn.setBackground(new java.awt.Color(60, 63, 66));
+        obrisi_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        obrisi_btn.setForeground(new java.awt.Color(204, 204, 204));
+        obrisi_btn.setText("OBRISI");
+        obrisi_btn.setToolTipText("");
+        obrisi_btn.setFocusable(false);
 
         jLabel1.setBackground(new java.awt.Color(60, 63, 66));
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
@@ -103,21 +86,16 @@ public class prijavaFrejm extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(104, 104, 104));
-        jLabel3.setText("Sifra:");
+        jLabel3.setText("Prezime:");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(104, 104, 104));
-        jLabel4.setText("Korisnicko ime:");
-        
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.prijavaFrejmOtvoren = 0;
-            }
+        jLabel4.setText("Ime:");
 
-        });
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(104, 104, 104));
+        jLabel5.setText("ID:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,22 +112,26 @@ public class prijavaFrejm extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(obrisi_btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(prijava_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(otkazi_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
+                        .addGap(37, 37, 37))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(user_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                            .addComponent(password_tf))
+                            .addComponent(ime_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(prezime_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(id_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -162,16 +144,20 @@ public class prijavaFrejm extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(user_tf))
+                    .addComponent(ime_tf))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prezime_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(password_tf))
-                .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(prijava_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(id_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(obrisi_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(otkazi_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,27 +171,34 @@ public class prijavaFrejm extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
-
+        
         pack();
         
         setLocationRelativeTo(null);
-    }      
+    }                      
 
-    public JPasswordField getPassword_tf() {
-        return password_tf;
+    public JTextField getIme_tf() {
+        return ime_tf;
     }
 
-
-    public JTextField getUser_tf() {
-        return user_tf;
+    public JTextField getPrezime_tf() {
+        return prezime_tf;
     }
 
-    
-    
+    public JTextField getId_tf() {
+        return id_tf;
+    }
+
+    public JButton getObrisi_btn() {
+        return obrisi_btn;
+    }
+
+    public JButton getOtkazi_btn() {
+        return otkazi_btn;
+    }
+
     
 }
 

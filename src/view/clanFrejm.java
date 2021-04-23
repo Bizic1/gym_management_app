@@ -1,13 +1,11 @@
-/*
-frejm koji se otvara kada se clan uspesno uloguje
- */
-package frejmovi;
+//Frejm koji se otvara kada se clan uspesno uloguje.
+package view;
 
-import baza.koriscenjeClan;
-import defaultpaket.FrameController;
+import defaultpaket.FrameControl;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 public class clanFrejm extends javax.swing.JFrame {
@@ -23,10 +21,8 @@ public class clanFrejm extends javax.swing.JFrame {
     private javax.swing.JButton potvrdi_btn;
     private javax.swing.JButton pregled_btn;
     private javax.swing.JTextField program_tf;
-    prijavaFrejm frejm;
 
-    public clanFrejm(prijavaFrejm frejm) {
-        this.frejm = frejm;
+    public clanFrejm() {
         napraviKomponente();
     }
 
@@ -96,7 +92,7 @@ public class clanFrejm extends javax.swing.JFrame {
         otkazi_btn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                FrameController.clanFrejmOtvoren = 0;
+                FrameControl.clanFrejmOtvoren = 0;
                 dispose();
             }
 
@@ -108,7 +104,6 @@ public class clanFrejm extends javax.swing.JFrame {
         pregled_btn.setText("CENA CLANARINE");
         pregled_btn.setToolTipText("");
         pregled_btn.setFocusable(false);
-        pregled_btn.addMouseListener(new koriscenjeClan(this, frejm, 2));
 
         potvrdi_btn.setBackground(new java.awt.Color(60, 63, 66));
         potvrdi_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -116,7 +111,6 @@ public class clanFrejm extends javax.swing.JFrame {
         potvrdi_btn.setText("POTVRDI");
         potvrdi_btn.setToolTipText("");
         potvrdi_btn.setFocusable(false);
-        potvrdi_btn.addMouseListener(new koriscenjeClan(this, frejm, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -173,14 +167,6 @@ public class clanFrejm extends javax.swing.JFrame {
                                 .addGap(44, 44, 44))
         );
         
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.clanFrejmOtvoren = 0;
-            }
-
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,10 +179,8 @@ public class clanFrejm extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
 
@@ -219,4 +203,17 @@ public class clanFrejm extends javax.swing.JFrame {
         this.program_tf = program_tf;
     }
 
+    public JButton getOtkazi_btn() {
+        return otkazi_btn;
+    }
+
+    public JButton getPotvrdi_btn() {
+        return potvrdi_btn;
+    }
+
+    public JButton getPregled_btn() {
+        return pregled_btn;
+    }
+
+    
 }

@@ -1,13 +1,11 @@
-/*
-Frejm koji se otvara pritiskom na dugme prikazi, u frejmu prikaziClana
- */
-package frejmovi;
+//Frejm koji se otvara pritiskom na dugme "PRIKAZI", u frejmu prikazi clana.
+package view;
 
-import defaultpaket.FrameController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
-import model.Clan;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class prikazivanjeClanaFrejm extends javax.swing.JFrame {
 
@@ -37,25 +35,11 @@ public class prikazivanjeClanaFrejm extends javax.swing.JFrame {
     private javax.swing.JTextField telefon_tf;
     private javax.swing.JButton zatvori_btn;
 
-    Clan c;
-
-    public prikazivanjeClanaFrejm(Clan c) {
-        this.c = c;
-        napraviKomponente(c);
+    public prikazivanjeClanaFrejm() {
+        napraviKomponente();
     }
 
-    private void napraviKomponente(Clan c) {
-
-        String br = c.getBroj_tel();
-        String clanarina = String.valueOf(c.getClanarina());
-        String email = c.getEmail();
-        String god = String.valueOf(c.getGodine());
-        String grad = c.getGrad();
-        String id = String.valueOf(c.getIdClan());
-        String ime = c.getIme();
-        String pol = c.getPol();
-        String prezime = c.getPrezime();
-        String program = c.getProgram();
+    private void napraviKomponente() {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -134,19 +118,10 @@ public class prikazivanjeClanaFrejm extends javax.swing.JFrame {
         jLabel7.setText("Broj telefona:");
 
         prezime_tf.setEditable(false);
-        prezime_tf.setText(prezime);
-
         ime_tf.setEditable(false);
-        ime_tf.setText(ime);
-
         godine_tf.setEditable(false);
-        godine_tf.setText(god);
-
         telefon_tf.setEditable(false);
-        telefon_tf.setText(br);
-
         pol_tf.setEditable(false);
-        pol_tf.setText(pol);
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
@@ -155,9 +130,7 @@ public class prikazivanjeClanaFrejm extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("ID:");
-
         grad_tf.setEditable(false);
-        grad_tf.setText(grad);
 
         zatvori_btn.setBackground(new java.awt.Color(60, 63, 66));
         zatvori_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -165,47 +138,26 @@ public class prikazivanjeClanaFrejm extends javax.swing.JFrame {
         zatvori_btn.setText("ZATVORI");
         zatvori_btn.setToolTipText("");
         zatvori_btn.setFocusable(false);
-        zatvori_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                FrameController.prikaziFrejmOtvoren = 0;
-                dispose();
-            }
-
-        });
 
         email_tf.setEditable(false);
-        email_tf.setText(email);
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("Email:");
 
         id_tf.setEditable(false);
-        id_tf.setText(id);
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("Program:");
 
         program_tf.setEditable(false);
-        program_tf.setText(program);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Clanarina:");
 
         clanarina_tf.setEditable(false);
-        clanarina_tf.setText(clanarina);
-
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.prikaziFrejmOtvoren = 0;
-            }
-
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -314,14 +266,56 @@ public class prikazivanjeClanaFrejm extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
 
         setLocationRelativeTo(null);
+    }
+
+    public JTextField getClanarina_tf() {
+        return clanarina_tf;
+    }
+
+    public JTextField getEmail_tf() {
+        return email_tf;
+    }
+
+    public JTextField getGodine_tf() {
+        return godine_tf;
+    }
+
+    public JTextField getGrad_tf() {
+        return grad_tf;
+    }
+
+    public JTextField getId_tf() {
+        return id_tf;
+    }
+
+    public JTextField getIme_tf() {
+        return ime_tf;
+    }
+
+    public JTextField getPol_tf() {
+        return pol_tf;
+    }
+
+    public JTextField getPrezime_tf() {
+        return prezime_tf;
+    }
+
+    public JTextField getProgram_tf() {
+        return program_tf;
+    }
+
+    public JTextField getTelefon_tf() {
+        return telefon_tf;
+    }
+
+    public JButton getZatvori_btn() {
+        return zatvori_btn;
     }
 
 }

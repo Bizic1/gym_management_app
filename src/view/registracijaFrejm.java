@@ -1,12 +1,6 @@
-/*
-frejm koji se otvara pritiskom na dugme Registracija, u pocetnom frejmu
- */
-package frejmovi;
+//Frejm koji se otvara pritiskom na dugme "Registracija", u pocetnom frejmu.
+package view;
 
-import baza.registracijaKorisnika;
-import defaultpaket.FrameController;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -148,14 +142,6 @@ public class registracijaFrejm extends javax.swing.JFrame {
         otkazi_btn.setText("OTKAZI");
         otkazi_btn.setToolTipText("");
         otkazi_btn.setFocusable(false);
-        otkazi_btn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                FrameController.RegistracioniFrejmOtvoren = 0;
-                dispose();
-            }
-
-        });
 
         registracija_btn.setBackground(new java.awt.Color(60, 63, 66));
         registracija_btn.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -163,20 +149,11 @@ public class registracijaFrejm extends javax.swing.JFrame {
         registracija_btn.setText("REGISTRACIJA");
         registracija_btn.setToolTipText("");
         registracija_btn.setFocusable(false);
-        registracija_btn.addMouseListener(new registracijaKorisnika(this));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
         jLabel12.setText("Sifra:");
 
-        //preuzeto sa: https://stackoverflow.com/questions/9093448/how-to-capture-a-jframes-close-button-click-event
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                FrameController.RegistracioniFrejmOtvoren = 0;
-            }
-
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -291,16 +268,18 @@ public class registracijaFrejm extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        //preuzeto sa: https://stackoverflow.com/questions/1614772/how-to-change-jframe-icon
         ImageIcon img = new ImageIcon("lib/icon.png");
         setIconImage(img.getImage());
-        //
 
         pack();
 
         setLocationRelativeTo(null);
     }
 
+    public JButton getOtkazi_btn() {
+        return otkazi_btn;
+    }
+    
     public JTextField getEmail_tf() {
         return email_tf;
     }
